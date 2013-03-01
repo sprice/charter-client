@@ -18,11 +18,11 @@
 
   <script type="text/template" id="freedom-list-template">
  
-  <ul>
+  <ol start="0">
     <% _.each(freedoms, function (freedom){ %>
     <li><a href="#<%= freedom.get('id')%>"><%= freedom.get('title')%></a></li>
     <% }); %>
-  </ul>
+  </ol>
 
   </script>
 
