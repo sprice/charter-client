@@ -1,0 +1,16 @@
+{
+  "name": "charter-client",
+  "version": "0.0.1",
+  "description": "A client that reads data from the Charter API.",
+  "private": true,
+  "main": "server.js",
+  "repository": "",
+  "author": "Shawn Price",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "connect": "~2.7.3",
+    "backbone": "0.9.2",
+    "underscore": "1.4.2"
+  }
+}
