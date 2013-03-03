@@ -21,7 +21,14 @@
  
   <ol start="0">
     <% _.each(freedoms, function (freedom){ %>
-    <li><a href="#<%= freedom.get('id')%>"><%= freedom.get('title')%></a></li>
+      <% //@TODO: clean this up %>
+      <% if ('16.1' == freedom.get('id')) { %>
+        <ol>
+          <li><a href="#<%= freedom.get('id')%>"><%= freedom.get('title')%></a>
+        </ol>
+      <% } else { %>
+        <li><a href="#<%= freedom.get('id')%>"><%= freedom.get('title')%></a>
+      <% } %>
     <% }); %>
   </ol>
 
