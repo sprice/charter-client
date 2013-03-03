@@ -2,6 +2,14 @@ ol {
   margin-left: 0;
 }
 
+ol li ol {
+  list-style: lower-alpha;
+}
+
+ol.freedom-list li ol {
+  list-style: decimal;
+}
+
 /**
 // From https://developer.mozilla.org/en-US/docs/CSS/Counters
 // Does not work for what we're trying to do. It hides the style type
