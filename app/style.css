@@ -1,0 +1,18 @@
+ol {
+  margin-left: 0;
+}
+
+/**
+// From https://developer.mozilla.org/en-US/docs/CSS/Counters
+// Does not work for what we're trying to do. It hides the style type
+// and prepends a value to the content. We want to replace the style
+// type with a decimal value.
+ol {
+  counter-reset: section;
+  list-style-type: none;
+}
+li:before {
+  counter-increment: section;
+  content: counters(section, ".") " ";
+}
+**/
