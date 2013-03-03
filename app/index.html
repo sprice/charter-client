@@ -21,7 +21,7 @@
     <div class="sections">
       <ol>
         <% _.each(sections, function (section) { %>
-          <li><a href="#<%= section.get('id') %>"><%= section.get('title') %></a></li>
+          <li><a href="#section/<%= section.get('id') %>"><%= section.get('title') %></a></li>
         <% }); %>
       </ol>
     </div>

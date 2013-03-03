@@ -15,7 +15,7 @@ var FreedomModel = Backbone.Model.extend({
   urlRoot: '/rights'
 });
 
-var SectionList = Backbone.View.extend({
+var SectionsList = Backbone.View.extend({
   el: '.page',
   render: function () {
     var self = this;
@@ -26,6 +26,28 @@ var SectionList = Backbone.View.extend({
         self.$el.html(template);
       }
     })
+  }
+});
+
+var SectionList = Backbone.View.extend({
+  el: '.page',
+  render: function (options) {
+    var self = this;
+    if (options.id) {
+      var freedoms = new Freedoms();
+      freedoms.fetch({
+        success: function (freedoms) {
+          var models = [];
+          _.each(freedoms.models, function (freedom) {
+            if (freedom.attributes.section == options.id) {
+              models.push(freedom);
+            }
+          });
+          var template = _.template($('#freedom-list-template').html(), {freedoms: models});
+          self.$el.html(template);
+        }
+      })
+    }
   }
 });
 
@@ -64,10 +86,12 @@ var Router = Backbone.Router.extend({
   routes: {
     '': 'home',
     'sections': 'sections',
+    'section/:id': 'section',
     ':id': 'viewFreedom'
   }
 });
 
+var sectionsList = new SectionsList();
 var sectionList = new SectionList();
 var freedomList = new FreedomList();
 var freedom = new Freedom();
@@ -77,7 +101,10 @@ router.on('route:home', function () {
   freedomList.render();
 });
 router.on('route:sections', function() {
-  sectionList.render();
+  sectionsList.render();
+});
+router.on('route:section', function (id) {
+  sectionList.render({id: id});
 });
 router.on('route:viewFreedom', function (id) {
   freedom.render({id: id});
