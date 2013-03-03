@@ -10,14 +10,14 @@
   <body>
     <div class="row">
       <div class="large-12 columns">
-        <h1>The Charter of Rights and Freedoms</h1>
+        <h1><a href="/">The Charter of Rights and Freedoms</a></h1>
         <hr>
       </div>
       <div class="large-12 columns page"></div>
     </div>
 
 
-  <script type="text/template" id="section-list-template">
+  <script type="text/template" id="sections-list-template">
     <div class="sections">
       <ol>
         <% _.each(sections, function (section) { %>
@@ -25,6 +25,23 @@
         <% }); %>
       </ol>
     </div>
+  </script>
+
+  <script type="text/template" id="section-list-template">
+  <% var freedom = _.first(freedoms) %>
+  <h2><%= freedom.get('title') %></h2>
+  <ol start="<%= freedom.get('id') %>">
+    <% _.each(freedoms, function (freedom) { %>
+      <% if ('16.1' == freedom.get('id')) { %>
+        <ol class="sub">
+          <li><p><%= freedom.get('markup')%></p>
+        </ol>
+      <% } else { %>
+        <li><p><%= freedom.get('markup')%></p>
+      <% } %>
+    <% }); %>
+  </ol>
+
   </script>
 
   <script type="text/template" id="freedom-list-template">

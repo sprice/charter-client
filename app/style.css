@@ -2,17 +2,35 @@ ol {
   margin-left: 0;
 }
 
-ol li ol {
+
+ol li ol li ol {
   list-style: lower-alpha;
 }
 
-ol.freedom-list li ol {
+ol.decimal {
+  list-style: decimal;
+}
+
+ol.alpha {
+  list-style: lower-alpha;
+}
+
+ol li ol.sub li ol {
   list-style: decimal;
 }
 
 .sections ol {
   list-style: none;
 }
+
+/**
+
+ol.freedom-list li ol {
+  list-style: decimal;
+}
+
+
+**/
 
 /*
 .sections {
