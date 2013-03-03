@@ -2,6 +2,10 @@ $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
   options.url = 'http://localhost:3000' + options.url;
 });
 
+var Sections = Backbone.Collection.extend({
+  url: '/sections'
+});
+
 var Freedoms = Backbone.Collection.extend({
   url: '/rights'
 });
@@ -9,6 +13,20 @@ var Freedoms = Backbone.Collection.extend({
 // Update var name. Should be Freedom
 var FreedomModel = Backbone.Model.extend({
   urlRoot: '/rights'
+});
+
+var SectionList = Backbone.View.extend({
+  el: '.page',
+  render: function () {
+    var self = this;
+    var sections = new Sections();
+    sections.fetch({
+      success: function (sections) {
+        var template = _.template($('#section-list-template').html(), {sections: sections.models});
+        self.$el.html(template);
+      }
+    })
+  }
 });
 
 var FreedomList = Backbone.View.extend({
@@ -45,16 +63,21 @@ var Freedom = Backbone.View.extend({
 var Router = Backbone.Router.extend({
   routes: {
     '': 'home',
+    'sections': 'sections',
     ':id': 'viewFreedom'
   }
 });
 
+var sectionList = new SectionList();
 var freedomList = new FreedomList();
 var freedom = new Freedom();
 
 var router = new Router();
 router.on('route:home', function () {
   freedomList.render();
+});
+router.on('route:sections', function() {
+  sectionList.render();
 });
 router.on('route:viewFreedom', function (id) {
   freedom.render({id: id});

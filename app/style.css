@@ -10,6 +10,16 @@ ol.freedom-list li ol {
   list-style: decimal;
 }
 
+.sections ol {
+  list-style: none;
+}
+
+/*
+.sections {
+  text-align: center;
+}
+*/
+
 /**
 // From https://developer.mozilla.org/en-US/docs/CSS/Counters
 // Does not work for what we're trying to do. It hides the style type
